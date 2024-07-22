@@ -1,0 +1,122 @@
+[
+    {
+      "date": "quinta-feira, 15 de agosto, 2024",
+      "games": [
+        {
+          "team1": "Phoenix",
+          "team2": "Chicago",
+          "time": "20:00"
+        },
+        {
+          "team1": "Washington",
+          "team2": "Minnesota",
+          "time": "20:00"
+        },
+        {
+          "team1": "New York",
+          "team2": "Los Angeles",
+          "time": "21:00"
+        }
+      ]
+    },
+    {
+      "date": "sexta-feira, 16 de agosto, 2024",
+      "games": [
+        {
+          "team1": "Seattle",
+          "team2": "Atlanta",
+          "time": "19:30"
+        },
+        {
+          "team1": "Phoenix",
+          "team2": "Indiana",
+          "time": "19:30"
+        },
+        {
+          "team1": "Connecticut",
+          "team2": "Dallas",
+          "time": "21:30"
+        }
+      ]
+    },
+    {
+      "date": "sábado, 17 de agosto, 2024",
+      "games": [
+        {
+          "team1": "Minnesota",
+          "team2": "Washington",
+          "time": "14:00"
+        },
+        {
+          "team1": "New York",
+          "team2": "Las Vegas",
+          "time": "16:00"
+        },
+        {
+          "team1": "Chicago",
+          "team2": "Los Angeles",
+          "time": "17:00"
+        }
+      ]
+    },
+    {
+      "date": "domingo, 18 de agosto, 2024",
+      "games": [
+        {
+          "team1": "Connecticut",
+          "team2": "Atlanta",
+          "time": "15:00"
+        },
+        {
+          "team1": "Seattle",
+          "team2": "Indiana",
+          "time": "15:30"
+        },
+        {
+          "team1": "Los Angeles",
+          "team2": "Las Vegas",
+          "time": "18:00"
+        },
+        {
+          "team1": "Chicago",
+          "team2": "Phoenix",
+          "time": "21:00"
+        }
+      ]
+    },
+    {
+      "date": "terça-feira, 20 de agosto, 2024",
+      "games": [
+        {
+          "team1": "Los Angeles",
+          "team2": "Connecticut",
+          "time": "19:00"
+        },
+        {
+          "team1": "Dallas",
+          "team2": "New York",
+          "time": "19:00"
+        },
+        {
+          "team1": "Seattle",
+          "team2": "Washington",
+          "time": "19:00"
+        }
+      ]
+    },
+    {
+      "date": "quarta-feira, 21 de agosto, 2024",
+      "games": [
+        {
+          "team1": "Phoenix",
+          "team2": "Atlanta",
+          "time": "19:30"
+        },
+        {
+          "team1": "Minnesota",
+          "team2": "Las Vegas",
+          "time": "21:30"
+        }
+      ]
+    }
+  ]
