@@ -13,8 +13,8 @@
           "time": "20:00"
         },
         {
-          "team1": "New York",
-          "team2": "Los Angeles",
+          "team1": "Liberty",
+          "team2": "Sparks",
           "time": "21:00"
         }
       ]
@@ -48,13 +48,13 @@
           "time": "14:00"
         },
         {
-          "team1": "New York",
-          "team2": "Las Vegas",
+          "team1": "Liberty",
+          "team2": "Aces",
           "time": "16:00"
         },
         {
           "team1": "Chicago",
-          "team2": "Los Angeles",
+          "team2": "Sparks",
           "time": "17:00"
         }
       ]
@@ -73,8 +73,8 @@
           "time": "15:30"
         },
         {
-          "team1": "Los Angeles",
-          "team2": "Las Vegas",
+          "team1": "Sparks",
+          "team2": "Aces",
           "time": "18:00"
         },
         {
@@ -88,13 +88,13 @@
       "date": "terça-feira, 20 de agosto, 2024",
       "games": [
         {
-          "team1": "Los Angeles",
+          "team1": "Sparks",
           "team2": "Connecticut",
           "time": "19:00"
         },
         {
           "team1": "Dallas",
-          "team2": "New York",
+          "team2": "Liberty",
           "time": "19:00"
         },
         {
@@ -114,7 +114,7 @@
         },
         {
           "team1": "Minnesota",
-          "team2": "Las Vegas",
+          "team2": "Aces",
           "time": "21:30"
         }
       ]
