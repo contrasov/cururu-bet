@@ -8,7 +8,7 @@
     </button>
 
     <!-- primeiros cards infos / tempo -->
-    <div class="flex flex-row gap-3 max-h-fit mt-12">
+    <div class="flex flex-row gap-3 max-h-fit mt-10">
       <div class="text-textoCinza bg-fundo px-6 py-6 rounded-md" v-if="!isLoading && eventDetails">
           <p class="text-textoVerde text-xl" >{{ eventDetails.name.replace('at', 'x') }}</p>
           <p>{{ eventDetails.shortName }}</p>
@@ -22,7 +22,7 @@
       </div>
       <!-- cards partidas -->
       <div class=" bg-fundo px-6 py-6 rounded-md max-w-[505px]" v-if="secondApiEventData">
-        <h1 class="text-textoVerde text-xl">Partida</h1>
+        <h1 class="text-textoVerde text-xl">Pontuação</h1>
         <div v-for="(competition, index) in eventDetails.competitions" :key="index">
           <div class="flex gap-2 text-textoCinza" v-for="(competitor, compIndex) in competition.competitors" :key="compIndex">
             <p>{{ competitor.team.name }}</p> <!-- Exemplo de exibição de nome da equipe -->

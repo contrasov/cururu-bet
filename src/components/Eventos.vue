@@ -1,6 +1,6 @@
 <template>
-  <main>
-    <h1 class="text-textoBranco font-bold py-2 mb-2" >Primeiros Jogos para TIPS</h1>
+  <main class="mt-6">
+    <h1 class="text-textoVerde font-bold py-2 mb-2" >Primeiros Jogos para TIPS</h1>
     <button v-if="isLoading" disabled type="button" class="text-textoVerde place-items-center ml-[450px] mt-[200px]">
     <svg aria-hidden="true" role="status" class="inline w-10 h-10 me-3 text-white animate-spin" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="#E5E7EB"/>
@@ -9,7 +9,7 @@
     </button>
 
     <div class="flex flex-row gap-4" v-if="!isLoading && eventsPrimary && eventsPrimary.length > 0">
-      <div class="text-textoCinza px-6 py-6 text-sm bg-fundo rounded-md min-w-[290px] cursor-pointer hover:bg-[#313131]" v-for="(event, index) in eventsPrimary" :key="index" @click="goToinfo(event.id)">
+      <div class="text-textoCinza px-6 py-6 text-sm bg-fundo rounded-md min-w-[300px] cursor-pointer hover:bg-[#313131]" v-for="(event, index) in eventsPrimary" :key="index" @click="goToinfo(event.id)">
         <!-- formatando a data ISO 8601 diretamente no dom -->
         <p class="">{{ new Date(event.date).toLocaleString("pt-BR", { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) }}</p>
         <h2 class="text-sm" >{{ event.name.replace('at', 'x' ) }}</h2>  <!-- mudar diretamente algum componente direto? string? -->

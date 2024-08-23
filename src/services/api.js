@@ -18,6 +18,15 @@ const secondApiData = axios.create({
   },
 })
 
+const scheduleApiData = axios.create({
+  baseURL: 'https://cdn.espn.com/core/wnba/',
+  withCredentials: false,
+  headers: {
+    Accept: 'application/json',
+    'Content-Type': 'application/json',
+  },
+})
+
 
 export default {
   getScoreboard() {
@@ -30,5 +39,9 @@ export default {
 
   getSecondApiData(eventId) {
     return secondApiData.get(`/events/${eventId}`);
+  },
+
+  getScheduleApiData() {
+    return scheduleApiData.get(`schedule?xhr=1&year=2024&week=1`)
   }
 };
