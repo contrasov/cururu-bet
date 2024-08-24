@@ -8,14 +8,25 @@
     </svg>
     </button>
 
+                                    <!-- consigo separar o elemento com .split -->
+                                <!-- <p class="text-sm" >
+                                    <span class="text-[#39B57A]">V {{ competitors.records[0].summary.split('-')[0] }}</span> -
+                                    <span class="text-[#E35C47]">D {{ competitors.records[0].summary.split('-')[1] }}</span>
+                                </p> -->
+
     <div class="flex flex-row gap-4" v-if="!isLoading && eventsPrimary && eventsPrimary.length > 0">
       <div class="text-textoCinza px-6 py-6 text-sm bg-fundo rounded-md min-w-[300px] cursor-pointer hover:bg-[#313131]" v-for="(event, index) in eventsPrimary" :key="index" @click="goToinfo(event.id)">
         <!-- formatando a data ISO 8601 diretamente no dom -->
-        <p class="">{{ new Date(event.date).toLocaleString("pt-BR", { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) }}</p>
-        <h2 class="text-sm" >{{ event.name.replace('at', 'x' ) }}</h2>  <!-- mudar diretamente algum componente direto? string? -->
-        <h2 class="text-textoVerde text-lg">{{ event.shortName }}</h2>
+        <p class="flex justify-center pb-4">{{ new Date(event.date).toLocaleString("pt-BR", { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) }}</p>
+        <div class="flex flex-row gap-4 justify-center" v-for="(competitions, compIndex) in event.competitions" :key="compIndex">
+          <div v-for="(competitors, compeIndex) in competitions.competitors" :key="compeIndex">
+            <div class="flex flex-col items-center gap-2 pt-2">
+              <img :src="competitors.team.logo" alt="logo team" class="max-w-12">
+              <h1 class="text-textoBranco font-semibold">{{ competitors.team.displayName }}</h1>
+            </div>
+          </div>
+        </div>
         <div class="flex flex-row gap-2">
-          <p>Periodo: {{ event.status.period}}</p>
         </div>
         <div class="mt-2">
           <p class="flex flex-row items-center gap-2 px-2 py-1 bg-[#517D30] text-textoBranco max-w-[130px]" v-if="event.status?.type?.completed">
@@ -41,7 +52,8 @@ export default {
             eventsPrimary: [],
             nameTeam: null,
             error: null,
-            isLoading: true
+            isLoading: true,
+           scheduleApiData: null
         };
     },
     methods: {
@@ -53,6 +65,10 @@ export default {
         try {
             const response = await apiService.getScoreboard();
             const events = response.data.events;
+            
+            const scheduleResponse = await apiService.getScheduleApiData();
+            this.scheduleApiData = scheduleResponse.data; // Acesso ao conteúdo da resposta      
+            
 
             if (events && events.length > 0) {
                 this.eventsPrimary = events;

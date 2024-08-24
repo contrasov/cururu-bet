@@ -9,9 +9,21 @@
                         {{ new Date(game.date).toLocaleDateString("pt-BR", { day: '2-digit', month: '2-digit', year: 'numeric' }) }}
                     </p>
                 </div>
-                <div class="flex flex-row gap-2 text-textoCinza">
+                <div class="flex flex-row  items-center gap-12 text-textoCinza">
                     <p>{{ formatTime(game.date) }}</p>
-                    <h1 class="mb-1">{{ game.name.replace("at", "x" ) }}</h1>
+                    <div class="flex flex-col gap-3"  v-for="(competitions, compIndex) in game.competitions" :key="compIndex">
+                        <div v-for="(competitors, compeIndex) in competitions.competitors" :key="compeIndex">
+                            <div class="flex flex-row justify-between gap-8">
+                                <div class="flex flex-row gap-2" >
+                                    <img class="max-h-6" :src="competitors.team.logo" alt="team logo">
+                                    <p class="font-semibold">{{ competitors.team.displayName }}</p>
+                                </div>
+                                <div>
+                                    <p>{{ competitors.score }}</p>  
+                                </div>
+                            </div>  
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
