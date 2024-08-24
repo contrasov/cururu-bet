@@ -10,34 +10,55 @@
     <!-- primeiros cards infos / tempo -->
     <div class="flex flex-row gap-3 max-h-fit mt-10">
       <div class="text-textoCinza bg-fundo px-6 py-6 rounded-md" v-if="!isLoading && eventDetails">
-          <p class="text-textoVerde text-xl" >{{ eventDetails.name.replace('at', 'x') }}</p>
-          <p>{{ eventDetails.shortName }}</p>
-        <div v-if="eventDetails.competitions && eventDetails.competitions.length">
-        <ul>
-          <li v-for="competition in eventDetails.competitions" :key="competition.id">
-            <p class="">{{ new Date(competition.date).toLocaleString("pt-BR", { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) }}</p>
-          </li>
-        </ul>
-        </div>
-      </div>
-      <!-- cards partidas -->
-      <div class=" bg-fundo px-6 py-6 rounded-md max-w-[505px]" v-if="secondApiEventData">
-        <h1 class="text-textoVerde text-xl">Pontuação</h1>
-        <div v-for="(competition, index) in eventDetails.competitions" :key="index">
-          <div class="flex gap-2 text-textoCinza" v-for="(competitor, compIndex) in competition.competitors" :key="compIndex">
-            <p>{{ competitor.team.name }}</p> <!-- Exemplo de exibição de nome da equipe -->
-            <p>{{ competitor.score }}</p>
+        <!-- detalhes 2 - 24/08/2024 -->
+        <div class="flex flex-col iem" v-for="(competitions, compIndex) in eventDetails.competitions" :key="compIndex">
+          <!-- data setada com toLocaleString -->
+           <div class="flex justify-center pb-3">
+             <p>{{ new Date(competitions.date).toLocaleString("pt-BR", { day: '2-digit', month: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }) }}</p>
+           </div>
+          <div class="flex flex-row items-center gap-12 justify-between" v-for="(competitors, compeIndex) in competitions.competitors" :key="compeIndex">
+            <div class="flex flex-row items-center gap-3 text-textoBranco">
+              <img :src="competitors.team.logo" alt="logo team" class="max-w-12">
+              <div>
+                <p>{{ competitors.team.displayName}}</p>
+                <p class="text-sm text-textoCinza">{{ competitors.records[0].summary }}</p>
+              </div>
+            </div>
+            <div class="text-textoBranco text-2xl">
+              <p>{{ competitors.score }}</p>
+            </div>
+          </div>
+          <!-- tag Finalizado -->
+          <div class="mt-2">
+            <div v-for="(competitions, compIndex) in eventDetails.competitions" :key="compIndex">
+              <p>Status: {{ competitions.status.type.state.replace("pre", "Pré-Jogo") }}</p>
+            </div>
+            <p class="flex flex-row items-center gap-2 px-2 py-1 bg-[#517D30] text-textoBranco max-w-[130px]" v-if="secondApiEventData.status?.type?.completed">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                <path d="M13.3337 4L6.00033 11.3333L2.66699 8" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              Finalizado
+            </p>
+            <p v-else></p>
           </div>
         </div>
+      </div>
 
-        <div class="mt-2">
-          <p class="flex flex-row items-center gap-2 px-2 py-1 bg-[#517D30] text-textoBranco max-w-[130px]" v-if="secondApiEventData.status?.type?.completed">
-            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
-              <path d="M13.3337 4L6.00033 11.3333L2.66699 8" stroke="white" stroke-width="1.33333" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-            Finalizado
-          </p>
-          <p v-else></p>
+      <!-- odds -->
+      <div class="bg-fundo px-6 py-6 rounded-md">
+        <h1 class="text-xl text-textoVerde pb-3">Palpites Iniciais</h1>
+        <div>
+          <h1 class="text-textoCinza">Favorito para ganhar</h1>
+          <div class="text-textoBranco"  v-for="(competitions, compIndex) in eventDetails.competitions" :key="compIndex">
+            <div class="flex flex-row gap-2 items-center" >
+              <p>{{ competitions.odds[0].awayTeamOdds.team.abbreviation }}</p>
+              <p v-html="competitions.odds[0].awayTeamOdds.favorite ? palpiteGanhador : ' '"></p>
+            </div>
+            <div class="flex flex-row gap-2" >
+              <p>{{ competitions.odds[0].homeTeamOdds.team.abbreviation }}</p>
+              <p v-html="competitions.odds[0].homeTeamOdds.favorite ? palpiteGanhador : ' '"></p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -45,11 +66,11 @@
     <div>
       <div class="mt-4" v-for="(competition, index) in eventDetails.competitions" :key="index">
         <div class="flex flex-col bg-fundo gap-2 text-textoCinza px-6 py-6 mb-4" v-for="(competitor, compIndex) in competition.competitors" :key="compIndex">
-          <p class="text-xl text-textoBranco font-bold">{{ competitor.team.displayName }}</p> <!-- Exemplo de exibição de nome da equipe -->
-          <div class="gap-4 flex flex-row"> 
+          <p class="text-xl text-textoBranco font-bold">{{ competitor.team.abbreviation }}</p> <!-- Exemplo de exibição de nome da equipe -->
+          <div class="gap-4 flex flex-row justify-center"> 
             <div class="flex flex-col items-center" v-for="(leader, leaderIndex) in competitor.leaders" :key="leaderIndex">
               <!-- Exibe informações dos líderes -->
-              <p class="text-xl text-textoVerde">{{ leader.displayName }}</p>
+              <p class="text-xl text-textoVerde">{{ leader.abbreviation }}</p>
                 <div v-if="leader.leaders && leader.leaders.length > 0">
                   <div v-for="(subLeader, subLeaderIndex) in leader.leaders" :key="subLeaderIndex">
                     <div class="flex flex-col items-center gap-2 py-4 px-4">
@@ -79,7 +100,12 @@ export default {
       eventId: null,
       eventDetails: null,
       secondApiEventData: null,
-      isLoading: true
+      isLoading: true,
+      palpiteGanhador: `
+      <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="5" cy="4.61328" r="4.5" fill="#60B438"/>
+      </svg>
+      `
     };
   },
   async created() {
