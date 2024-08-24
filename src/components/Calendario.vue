@@ -19,7 +19,7 @@
                                     <p class="font-semibold">{{ competitors.team.displayName }}</p>
                                 </div>
                                 <div>
-                                    <p>{{ competitors.score }}</p>  
+<!--                                     <p>{{ competitors.score }}</p> -->
                                 </div>
                             </div>  
                         </div>
