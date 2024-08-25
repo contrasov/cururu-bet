@@ -43,5 +43,9 @@ export default {
 
   getScheduleApiData() {
     return scheduleApiData.get(`schedule?xhr=1&year=2024&week=1`)
+  },
+
+  getTeamId(teamId){
+    return apiClient.get(`/teams/${teamId}`)
   }
 };
